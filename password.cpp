@@ -26,18 +26,28 @@ int main(){
 			if(upper == 1) {
 				cout << "How many characters should be uppercase? ";
 				cin >> upperNum;
+				while(upperNum > passLength || upperNum < 1) {
+					cout << "Error: invalid length; try again: ";
+					cin >> upperNum;
+				}
 				for(int i = 0; i < upperNum; i++) {
 					password += (char) (rand() % 26 + 65);
 				}
+				passLength -= upperNum;
 			}			
 			cout << "Do you want lowercase letters (0-no, 1-yes)? ";
 			cin >> lower;
 			if(lower == 1) {
 				cout << "How many character should be lowercase? ";
 				cin >> lowerNum;
+				while(lowerNum > passLength || lowerNum < 1) {
+					cout << "Error: invalid length; try again: ";
+					cin >> lowerNum;
+				}
 				for(int i = 0; i < lowerNum; i++) {
 					password += (char) (rand() % 26 + 97);
 				}
+				passLength -= lowerNum;
 			}
 		}
 		
@@ -47,9 +57,14 @@ int main(){
 		if(num == 1) {
 			cout << "How many characters should be numbers? ";
 			cin >> manyNum;
+			while(manyNum > passLength || manyNum < 1) {
+				cout << "Error: invalid length; try again: ";
+				cin >> manyNum;
+			}
 			for(int i = 0; i < manyNum; i++) {
 				password += (char) (rand() % 10 + 48);
 			}
+			passLength -= manyNum;
 		}
 
 		cout << "Your random password is: " << password << endl;
